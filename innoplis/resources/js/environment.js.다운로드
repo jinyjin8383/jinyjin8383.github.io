@@ -1,0 +1,6 @@
+const environment = {
+  apiHost: '',
+  apiUrl: '/api',
+  dbrtUrl: '/dbrt',
+  siteUrl: '/site'
+};

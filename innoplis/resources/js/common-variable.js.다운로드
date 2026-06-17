@@ -1,0 +1,6 @@
+const searchType01 = '::전체::';
+const searchType02 = '전체';
+const crudType01 = '::선택::';
+const crudType02 = '선택';
+const crudType03 = '::없음::';
+const crudType04 = '없음';
