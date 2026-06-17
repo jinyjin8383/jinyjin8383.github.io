@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SmartAlarm ADMS v5.0</title>
+<link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+<header class="hdr">
+  <div class="hdr-left">
+    <div class="hdr-logo">
+      <div class="logo-mark">
+        <img src="images/main-icon.svg" alt="logo">
+      </div>
+      SmartAlarm
+    </div>
+    <div class="hdr-sub">ADMS v5.0 &nbsp;배전계통 실시간 알람 이상탐지 시스템 (DL-독립 패턴 그룹)</div>
+  </div>
+  <div class="hdr-right">
+    <div class="live-wrap"><span class="live-dot"></span>실시간 모니터링 중</div>
+    <span class="hdr-clock" id="clock"></span>
+    <span>관제사: admin</span>
+  </div>
+</header>
+
+<div class="toolbar">
+  <span class="tb-label">조회기간:</span>
+  <select class="tb-sel">
+    <option>최근 1시간</option><option>최근 6시간</option><option>최근 24시간</option>
+  </select>
+  <div class="tb-sep"></div>
+  <span class="tb-label">우선순위:</span>
+  <div class="chip-row" id="cp">
+    <button class="chip on" onclick="tc(this,'cp')">전체</button>
+    <button class="chip" onclick="tc(this,'cp')">P1</button>
+    <button class="chip" onclick="tc(this,'cp')">P2</button>
+    <button class="chip" onclick="tc(this,'cp')">P3+</button>
+  </div>
+  <div class="tb-sep"></div>
+  <span class="tb-label">이상도:</span>
+  <div class="chip-row" id="ca">
+    <button class="chip on" onclick="tc(this,'ca')">전체</button>
+    <button class="chip pill-red" onclick="tc(this,'ca')">높음</button>
+    <button class="chip pill-org" onclick="tc(this,'ca')">중간</button>
+    <button class="chip pill-grn" onclick="tc(this,'ca')">낮음</button>
+  </div>
+  <div class="spacer"></div>
+  <input class="tb-search" type="text" placeholder="알람/DL 검색…" oninput="filterDL(this.value)">
+  <button class="tb-csv" onclick="alert('CSV 내보내기')">CSV 내보내기</button>
+</div>
+
+<div class="page-wrap">
+<div class="page">
+
+  <div class="panel panel-stat">
+    <div class="panel-hd">실시간 통계 요약</div>
+    <div class="panel-body">
+      <div class="stat-grid">
+        <div class="sc sc-org"><div class="sc-val">38</div><div class="sc-lbl">전체 알람 수</div></div>
+        <div class="sc sc-blue"><div class="sc-val">5</div><div class="sc-lbl">배전선로 (DL)</div></div>
+        <div class="sc sc-red"><div class="sc-val">28</div><div class="sc-lbl">미수신 의심</div></div>
+        <div class="sc sc-grn"><div class="sc-val">5</div><div class="sc-lbl">패턴 그룹</div></div>
+      </div>
+      <div class="divider"></div>
+      <div class="blk">
+        <div class="blk-ttl">시간 구간 (TIMEBIN)</div>
+        <select class="timebin">
+          <option>전체 시간구간</option>
+          <option selected>2025-04-16 10:01 (14건)</option>
+          <option>2025-04-16 10:02 (6건)</option>
+          <option>2025-04-16 10:03 (8건)</option>
+          <option>2025-04-16 10:04 (6건)</option>
+          <option>2025-04-16 10:05 (4건)</option>
+        </select>
+      </div>
+      <div class="divider"></div>
+      <div class="blk">
+        <div class="blk-ttl">우선순위별 분포</div>
+        <div class="prow"><div class="pbadge pb1">1</div><div class="ptrack"><div class="pfill pf1" style="width:11%"></div></div><span class="pcnt pc1">4건</span></div>
+        <div class="prow"><div class="pbadge pb2">2</div><div class="ptrack"><div class="pfill pf2" style="width:47%"></div></div><span class="pcnt pc2">18건</span></div>
+        <div class="prow"><div class="pbadge pb3">3</div><div class="ptrack"><div class="pfill pf3" style="width:42%"></div></div><span class="pcnt">16건</span></div>
+      </div>
+      <div class="divider"></div>
+      <div class="blk">
+        <div class="blk-ttl">미수신 탐지 방법별</div>
+        <div class="drow"><span class="pill pill-blue">AE 모델</span><span class="dcnt">9건</span></div>
+        <div class="drow"><span class="pill pill-pur">패턴</span><span class="dcnt">4건</span></div>
+        <div class="drow"><span class="pill pill-red">AE + 패턴</span><span class="dcnt">4건</span></div>
+        <div class="drow"><span class="pill pill-grn">패턴그룹</span><span class="dcnt">3건</span></div>
+        <div class="drow"><span class="pill pill-amb">패턴그룹+기타</span><span class="dcnt">8건</span></div>
+      </div>
+      <div class="divider"></div>
+      <div class="model-box">
+        <div class="blk-ttl" style="margin-bottom:.3rem">모델 정보</div>
+        model.pth<br>co-occurrence: 84건 로드<br>패턴 그룹: 5개 로드<br>처리: 2026-03-15 15:53:48<br>
+        <span class="model-ok">✓ OK</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel panel-dl">
+    <div class="panel-hd">배전선로 (DL) 목록</div>
+    <div class="dl-search-row">
+      <input class="dl-search" type="text" placeholder="배전선로 검색…" oninput="filterDL(this.value)">
+    </div>
+    <div class="panel-body">
+      <div class="dl-list" id="dlList"></div>
+    </div>
+  </div>
+
+  <div class="col-detail" id="col3">
+    <div class="empty-state" id="emptyState">
+      <svg width="36" height="36" viewBox="0 0 24 24" fill="none">
+        <rect x="3" y="3" width="18" height="18" rx="2" stroke="#94a3b8" stroke-width="1.5"/>
+        <path d="M7 8h10M7 12h7M7 16h5" stroke="#94a3b8" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+      <p>좌측에서 배전선로(DL)를 선택하면<br>분석 결과가 표시됩니다.</p>
+    </div>
+    <div id="detailView" style="display:none;flex-direction:column;height:100%">
+      <div class="dhd">
+        <span class="dhd-name" id="dName"></span>
+        <span class="dhd-meta" id="dMeta"></span>
+        <div class="dhd-tags" id="dTags"></div>
+      </div>
+      <div class="detail-scroll" id="dScroll"></div>
+    </div>
+  </div>
+
+</div>
+</div>
+
+<div class="bot">
+  <div class="bot-left">
+    <span class="sbar-spin"></span>
+    자동 갱신 중 (60초 주기)
+    <span class="bot-sep">|</span><span>모델: model.pth</span>
+    <span class="bot-sep">|</span><span>공동발생 패턴: 84건</span>
+    <span class="bot-sep">|</span>
+    <span style="color:var(--pur)">패턴 그룹: 5개</span>
+  </div>
+  <div>배전계통 실시간 이상탐지 · DL-독립 패턴 그룹</div>
+</div>
+
+<script>
+const DATA=[
+  {id:"11311300000005",bin:"10:01:00",sc:3.88,rk:"h",na:8,nm:12,
+   al:[
+     {p:1,t:"10:01:02",nm:"외부전원상실",s:3.88,g:"매우높음",pe:false,ru:true, on:true},
+     {p:1,t:"10:01:05",nm:"위상불일치",  s:2.89,g:"높음",    pe:true, ru:true, on:true},
+     {p:2,t:"10:01:08",nm:"전류불평형",  s:2.10,g:"높음",    pe:false,ru:false,on:true},
+     {p:2,t:"10:01:12",nm:"과전류(A)",   s:1.52,g:"중간",    pe:false,ru:true, on:true},
+     {p:2,t:"10:01:15",nm:"과전류(B)",   s:1.40,g:"중간",    pe:false,ru:true, on:true},
+     {p:3,t:"10:01:18",nm:"과전류(C)",   s:1.12,g:"중간",    pe:false,ru:true, on:false},
+     {p:3,t:"10:01:22",nm:"활선(전원)",  s:0.38,g:"정상",    pe:true, ru:false,on:true},
+     {p:3,t:"10:01:25",nm:"활선(부하)",  s:0.22,g:"정상",    pe:false,ru:false,on:true},
+   ],
+   oc:["외부전원상실","위상불일치","전류불평형","과전류(A)","과전류(B)","과전류(C)","활선(전원)","활선(부하)"],
+   tp:[{n:"외부전원상실",s:3.88},{n:"위상불일치",s:2.89},{n:"전류불평형",s:2.10},{n:"과전류(A)",s:1.52}],
+   tn:[{n:"고장검출(N)",s:2.95},{n:"고장검출(A)",s:2.31},{n:"지락검출(A)",s:1.88},{n:"재폐로차단(A)",s:1.22}],
+   pm:[{n:"고장검출(N)",p:0.82},{n:"지락검출(A)",p:0.71},{n:"재폐로차단(A)",p:0.55}],
+   ms:[
+     {n:"고장검출(N)", s:2.95,src:"both",   d:"AE 복원 기대 + P=0.82 via 과전류(A)",i:"통신 누락 또는 장비 이상 확인 필요"},
+     {n:"고장검출(A)", s:2.31,src:"ae",     d:"raw_diff=-1.52",i:"AE 모델이 발생 예상했으나 미수신"},
+     {n:"지락검출(A)", s:1.88,src:"ae",     d:"raw_diff=-1.37",i:"AE 모델이 발생 예상했으나 미수신"},
+     {n:"지락검출(A)", s:0.71,src:"pattern",d:"trigger=과전류(A), P=0.71",i:"'과전류(A)' 발생 시 71% 동반했으나 미수신"},
+     {n:"재폐로차단(A)",s:1.22,src:"ae",    d:"raw_diff=-1.10",i:"AE 모델이 발생 예상했으나 미수신"},
+     {n:"재폐로차단(A)",s:0.55,src:"pattern",d:"trigger=과전류(B), P=0.55",i:"'과전류(B)' 발생 시 55% 동반했으나 미수신"},
+   ],
+   pg:[
+     {id:1,tg:"과전류(A)",   tr:true,rc:["외부전원상실","과전류(A)","과전류(B)","과전류(C)"],ms:["고장검출(N)","지락검출(A)","재폐로차단(A)"],ra:0.57,pr:0.78,sz:7},
+     {id:3,tg:"외부전원상실",tr:true,rc:["외부전원상실","위상불일치"],ms:["단상결상(N)","고장전류(A)"],ra:0.50,pr:0.72,sz:4},
+   ]
+  },
+  {id:"11201300000002",bin:"10:01:00",sc:2.45,rk:"h",na:6,nm:8,
+   al:[
+     {p:2,t:"10:01:03",nm:"전일최대전압(A)",s:2.45,g:"높음",pe:false,ru:false,on:true},
+     {p:2,t:"10:01:06",nm:"전일최대전압(B)",s:2.38,g:"높음",pe:false,ru:false,on:true},
+     {p:2,t:"10:01:09",nm:"전일최대전압(C)",s:2.30,g:"높음",pe:false,ru:false,on:true},
+     {p:2,t:"10:01:14",nm:"변압기과부하",   s:1.85,g:"중간",pe:false,ru:true, on:true},
+     {p:3,t:"10:01:20",nm:"활선(전원)",     s:0.35,g:"정상",pe:true, ru:false,on:true},
+     {p:3,t:"10:01:23",nm:"활선(부하)",     s:0.18,g:"정상",pe:false,ru:false,on:true},
+   ],
+   oc:["전일최대전압(A)","전일최대전압(B)","전일최대전압(C)","변압기과부하","활선(전원)","활선(부하)"],
+   tp:[{n:"전일최대전압(A)",s:2.45},{n:"전일최대전압(B)",s:2.38},{n:"전일최대전압(C)",s:2.30}],
+   tn:[{n:"전압불평형",s:1.92},{n:"전일최소전압(A)",s:1.55},{n:"전일최소전압(B)",s:1.48}],
+   pm:[{n:"전압불평형",p:0.78},{n:"전일최소전압(A)",p:0.65}],
+   ms:[
+     {n:"전압불평형",    s:1.92,src:"both",   d:"AE 기대 + P=0.78 via 전일최대전압(A)",i:"전압 관련 알람 누락 의심"},
+     {n:"전일최소전압(A)",s:1.55,src:"ae",    d:"raw_diff=-1.24",i:"AE 모델이 발생 예상했으나 미수신"},
+     {n:"전일최소전압(B)",s:1.48,src:"ae",    d:"raw_diff=-1.22",i:"AE 모델이 발생 예상했으나 미수신"},
+     {n:"전일최소전압(A)",s:0.65,src:"pattern",d:"trigger=전일최대전압(A), P=0.65",i:"학습 65% 동반했으나 미수신"},
+   ],
+   pg:[{id:2,tg:"전일최대전압(A)",tr:true,rc:["전일최대전압(A)","전일최대전압(B)","전일최대전압(C)","변압기과부하"],ms:["전압불평형","전일최소전압(A)","연계점전압초과(N)"],ra:0.57,pr:0.75,sz:7}]
+  },
+  {id:"11201300000059",bin:"10:02:00",sc:1.72,rk:"m",na:6,nm:5,
+   al:[
+     {p:1,t:"10:02:01",nm:"축전지과방전",  s:1.72,g:"중간",pe:false,ru:true, on:true},
+     {p:1,t:"10:02:04",nm:"인버터동작정지",s:1.58,g:"중간",pe:false,ru:true, on:true},
+     {p:2,t:"10:02:08",nm:"분산형전원전압",s:1.05,g:"중간",pe:false,ru:false,on:true},
+     {p:2,t:"10:02:12",nm:"역률불량",      s:0.88,g:"낮음",pe:false,ru:false,on:true},
+     {p:3,t:"10:02:18",nm:"활선(전원)",    s:0.32,g:"정상",pe:true, ru:false,on:true},
+     {p:3,t:"10:02:22",nm:"활선(부하)",    s:0.20,g:"정상",pe:false,ru:false,on:true},
+   ],
+   oc:["축전지과방전","인버터동작정지","분산형전원전압","역률불량","활선(전원)","활선(부하)"],
+   tp:[{n:"축전지과방전",s:1.72},{n:"인버터동작정지",s:1.58}],
+   tn:[{n:"축전지과충전",s:1.45},{n:"인버터이상전압",s:1.20}],
+   pm:[{n:"축전지과충전",p:0.68}],
+   ms:[
+     {n:"축전지과충전", s:1.45,src:"both",   d:"AE 기대 + P=0.68 via 축전지과방전",i:"축전지 관련 알람 누락 의심"},
+     {n:"인버터이상전압",s:1.20,src:"ae",    d:"raw_diff=-1.10",i:"AE 모델이 발생 예상했으나 미수신"},
+     {n:"계통연계이상", s:0.45,src:"pattern",d:"trigger=인버터동작정지, P=0.45",i:"학습 45% 동반했으나 미수신"},
+   ],
+   pg:[{id:4,tg:"축전지과방전",tr:true,rc:["축전지과방전","인버터동작정지"],ms:["축전지과충전","계통연계이상"],ra:0.50,pr:0.68,sz:4}]
+  },
+  {id:"11081300000050",bin:"10:03:00",sc:1.15,rk:"m",na:8,nm:3,
+   al:[
+     {p:2,t:"10:03:02",nm:"자기진단이상",   s:1.15,g:"중간",pe:false,ru:false,on:true},
+     {p:2,t:"10:03:05",nm:"전일최대전압(A)",s:0.95,g:"낮음",pe:false,ru:false,on:true},
+     {p:2,t:"10:03:08",nm:"전일최대전압(B)",s:0.92,g:"낮음",pe:false,ru:false,on:true},
+     {p:2,t:"10:03:11",nm:"전일최대전압(C)",s:0.90,g:"낮음",pe:false,ru:false,on:true},
+     {p:3,t:"10:03:15",nm:"전압불평형",     s:0.55,g:"낮음",pe:false,ru:false,on:false},
+     {p:3,t:"10:03:18",nm:"역률불량",       s:0.42,g:"정상",pe:false,ru:false,on:false},
+     {p:3,t:"10:03:22",nm:"활선(전원)",     s:0.28,g:"정상",pe:true, ru:false,on:true},
+     {p:3,t:"10:03:25",nm:"활선(부하)",     s:0.15,g:"정상",pe:false,ru:false,on:true},
+   ],
+   oc:["자기진단이상","전일최대전압(A)","전일최대전압(B)","전일최대전압(C)","전압불평형","역률불량","활선(전원)","활선(부하)"],
+   tp:[{n:"자기진단이상",s:1.15},{n:"전일최대전압(A)",s:0.95}],
+   tn:[{n:"전일최소전압(A)",s:0.78},{n:"변압기과부하",s:0.65}],
+   pm:[{n:"전일최소전압(A)",p:0.65}],
+   ms:[
+     {n:"전일최소전압(A)",s:0.78,src:"both",d:"AE + P=0.65 via 전일최대전압(A)",i:"전압 알람 누락 가능성"},
+     {n:"변압기과부하",   s:0.65,src:"ae",  d:"raw_diff=-0.81",i:"AE 모델이 약한 기대"},
+   ],
+   pg:[{id:2,tg:"전일최대전압(A)",tr:true,rc:["전일최대전압(A)","전일최대전압(B)","전일최대전압(C)","전압불평형"],ms:["전일최소전압(A)"],ra:0.83,pr:0.75,sz:5}]
+  },
+  {id:"11111300000010",bin:"10:04:00",sc:0.82,rk:"l",na:6,nm:0,
+   al:[
+     {p:2,t:"10:04:02",nm:"활선(부하)",      s:0.82,g:"낮음",pe:false,ru:false,on:true},
+     {p:2,t:"10:04:05",nm:"조류흐름(역방향)",s:0.65,g:"낮음",pe:false,ru:false,on:true},
+     {p:2,t:"10:04:08",nm:"위상불일치",      s:0.52,g:"낮음",pe:true, ru:false,on:true},
+     {p:3,t:"10:04:12",nm:"전압불평형",      s:0.35,g:"정상",pe:false,ru:false,on:false},
+     {p:3,t:"10:04:18",nm:"활선(전원)",      s:0.22,g:"정상",pe:true, ru:false,on:true},
+     {p:3,t:"10:04:22",nm:"역률불량",        s:0.15,g:"정상",pe:false,ru:false,on:true},
+   ],
+   oc:["활선(부하)","조류흐름(역방향)","위상불일치","전압불평형","활선(전원)","역률불량"],
+   tp:[{n:"조류흐름(역방향)",s:0.65}],tn:[],pm:[],ms:[],pg:[]
+  },
+  {id:"11311300000099",bin:"10:05:00",sc:0.44,rk:"l",na:4,nm:0,
+   al:[
+     {p:2,t:"10:05:03",nm:"분산형전원전압",     s:0.44,g:"정상",pe:false,ru:false,on:true},
+     {p:2,t:"10:05:06",nm:"전용_연계점초과전압",s:0.38,g:"정상",pe:false,ru:false,on:true},
+     {p:3,t:"10:05:12",nm:"활선(전원)",         s:0.20,g:"정상",pe:true, ru:false,on:true},
+     {p:3,t:"10:05:15",nm:"활선(부하)",         s:0.12,g:"정상",pe:false,ru:false,on:true},
+   ],
+   oc:["분산형전원전압","전용_연계점초과전압","활선(전원)","활선(부하)"],
+   tp:[],tn:[],pm:[],ms:[],pg:[]
+  }
+];
+
+function gradeClass(g){return{매우높음:'h',높음:'h',중간:'m'}[g]||'';}
+function gradePill(g){
+  if(g==='매우높음'||g==='높음')return`<span class="pill pill-red">${g}</span>`;
+  if(g==='중간')return`<span class="pill pill-amb">${g}</span>`;
+  return`<span class="pill pill-grn">${g||'정상'}</span>`;
+}
+function srcPill(s){
+  const m={both:'pill-red',ae:'pill-pur',pattern:'pill-blue'};
+  const l={both:'AE+패턴',ae:'AE 모델',pattern:'패턴'};
+  return`<span class="pill ${m[s]||''}">${l[s]||s}</span>`;
+}
+function pbCls(p){return p===1?'pb1':p===2?'pb2':'pb3';}
+
+/* SVG icons */
+const ICON={
+  clock: `<img src="images/clock-bold.svg" alt="clock">`,
+  bar:`<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M8 17V13M12 17V7M16 17v-4"/></svg>`,
+  warn:`<img src="images/warning.svg" alt="warn">`,
+  Suspicion:`<img src="images/Suspicion-symbols.svg" alt="Suspicion">`,	
+  received:`<img src="images/ri_user-received.svg" alt="received">`,	
+  chkCircle:`<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M9 12l2 2 4-4"/></svg>`,
+  xCircle:`<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M15 9l-6 6M9 9l6 6"/></svg>`,
+  chk:`<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>`,
+  tag:`<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>`,
+};
+
+function renderList(){
+  document.getElementById('dlList').innerHTML=DATA.map((d,i)=>{
+    const sc=d.rk==='h'?'sh':d.rk==='m'?'sm':'';
+    const miss=d.nm>0?`<span class="pill pill-red">미수신 ${d.nm}</span>`:`<span class="pill pill-grn">정상</span>`;
+    const pg=d.pg.length>0?`<span class="pill pill-pur">PG ${d.pg.length}</span>`:'';
+    return`<div class="dlc r${d.rk}${i===0?' active':''}" data-id="${d.id}" onclick="sel(${i},this)">
+      <div class="dlc-row1">
+        <span class="dlc-id">DL ${d.id}</span>
+        <span class="dlc-sc ${sc}">Score ${d.sc.toFixed(2)}</span>
+      </div>
+      <div class="dlc-row2">
+        <span class="pill" style="font-family:var(--mono)">${d.bin}</span>
+        <span class="pill">알람 ${d.na}건</span>
+        ${miss}${pg}
+      </div>
+      <span class="dlc-arrow"></span>
+    </div>`;
+  }).join('');
+}
+
+function sel(idx,el){
+  document.querySelectorAll('.dlc').forEach(c=>c.classList.remove('active'));
+  (el||document.querySelectorAll('.dlc')[idx]).classList.add('active');
+  const d=DATA[idx];
+  document.getElementById('emptyState').style.display='none';
+  document.getElementById('detailView').style.display='flex';
+  document.getElementById('dName').textContent=`DL ${d.id}`;
+  document.getElementById('dMeta').textContent=`시간구간: ${d.bin} | 알람 ${d.na}건 | 미수신 ${d.nm}건`;
+  const rp=d.rk==='h'?'pill-red':d.rk==='m'?'pill-amb':'pill-grn';
+  document.getElementById('dTags').innerHTML=
+    `<span class="pill">${d.na}건</span>
+     <span class="pill ${rp}">이상도 ${d.sc.toFixed(2)}</span>
+     ${d.nm>0?`<span class="pill pill-red">미수신 ${d.nm}건</span>`:''}
+     ${d.pg.length>0?`<span class="pill pill-pur">PG ${d.pg.length}개</span>`:''}`;
+
+  let h='';
+
+  /* §1 알람 목록 */
+  h+=`<div class="sect fade"><div class="sect-hd">
+    <div class="sect-num">1</div>
+    <div class="sect-ttl">실시간 알람 목록 (Alarm Anomaly Score List)</div>
+    <span class="sect-cnt">${d.na}건</span>
+  </div><div class="tw"><table>
+    <thead><tr>
+      <th style="width:1.625rem">P</th><th>발생 시각</th><th>알람 유형</th>
+      <th style="width:8rem">이상도 점수</th><th>이상도</th>
+      <th style="text-align:center;width:2.25rem">상시</th>
+      <th style="text-align:center;width:2.25rem">규칙</th><th>상태</th>
+    </tr></thead><tbody>`;
+  d.al.forEach(a=>{
+    const sc=gradeClass(a.g);const fc=a.s>=2?'fh':a.s>=1?'fm':'';
+    h+=`<tr>
+      <td><div class="pbadge ${pbCls(a.p)}">${a.p}</div></td>
+      <td style="font-family:var(--mono);color:var(--n600)">${a.t}</td>
+      <td>${a.nm}${a.pe?` <span class="pill">상시</span>`:''}</td>
+      <td><div class="score-wrap">
+        <span class="score-num ${sc}">${a.s.toFixed(2)}</span>
+        <div class="score-track"><div class="score-fill ${fc}" style="width:${Math.min(a.s/4*100,100)}%"></div></div>
+      </div></td>
+      <td>${gradePill(a.g)}</td>
+      <td style="text-align:center"><span class="flag ${a.pe?'fy':''}">${a.pe?'Y':'–'}</span></td>
+      <td style="text-align:center"><span class="flag ${a.ru?'fr':''}">${a.ru?'R':'–'}</span></td>
+      <td>${a.on?'<span class="st-on">ACTIVE</span>':'<span class="st-off">INACTIVE</span>'}</td>
+    </tr>`;
+  });
+  h+=`</tbody></table></div></div>`;
+
+  /* §2 동시발생 패턴 분석 */
+  const MAX=4;
+  h+=`<div class="sect fade" style="animation-delay:.07s">
+    <div class="sect-hd">
+      <div class="sect-num">2</div>
+      <div class="sect-ttl">동시발생 패턴 분석 (Co-occurrence Pattern)</div>
+      <span class="sect-cnt">1개 구간</span>
+    </div>
+    <div class="co-timebar">
+      <span class="co-time">${ICON.clock}&nbsp;${d.bin}</span>
+      <div class="co-tags">${d.oc.map(n=>`<span class="pill">${n}</span>`).join('')}</div>
+      <div class="co-count">${ICON.bar}&nbsp;동시 발생 ${d.oc.length}건</div>
+    </div>
+    <div class="co-cols">
+      <div class="co-col">
+        <div class="co-col-hd co-hd-red"><span class="co-icon co-icon-red">${ICON.warn}</span>비정상 발생</div>
+        ${d.tp.length?d.tp.map(t=>`
+          <div class="co-item">
+            <span class="co-lbl co-lbl-red">${t.n}</span>
+            <span class="co-val">${t.s.toFixed(2)}</span>
+          </div>`).join(''):`<div class="co-empty">해당 없음</div>`}
+      </div>
+      <div class="co-col">
+        <div class="co-col-hd co-hd-amb"><span class="co-icon co-icon-amb">${ICON.Suspicion}</span>미수신 의심 (AE)</div>
+        ${d.tn.length?d.tn.map(t=>`
+          <div class="co-item">
+            <span class="co-lbl co-lbl-amb">${t.n}</span>
+            <span class="co-val">${t.s.toFixed(2)}</span>
+          </div>`).join(''):`<div class="co-empty">해당 없음</div>`}
+      </div>
+      <div class="co-col">
+        <div class="co-col-hd co-hd-blue"><span class="co-icon co-icon-blue">${ICON.received}</span>패턴 기반 미수신</div>
+        ${d.pm.length?d.pm.map(t=>`
+          <div class="co-item">
+            <span class="co-lbl co-lbl-blue">${t.n}</span>
+            <span class="co-val">P = ${t.p.toFixed(2)}</span>
+          </div>`).join(''):`<div classpgc3.pgc3-puzzle-box="co-empty">해당 없음</div>`}
+      </div>
+    </div>
+  </div>`;
+
+  /* §3 패턴 그룹 매칭 */
+  h+=`<div class="sect fade" style="animation-delay:.12s">
+    <div class="sect-hd">
+      <div class="sect-num">3</div>
+      <div class="sect-ttl">DL-독립 패턴 그룹 매칭 (Pattern Group Matching)</div>
+      <span class="sect-cnt">${d.pg.length}개 활성</span>
+    </div>
+    <div class="sect-body">`;
+  if(d.pg.length){
+    d.pg.forEach(pg=>{
+      h+=`<div class="pgc3">
+        <div class="pgc3-body">
+          <div class="pgc3-icon-col">
+            <div class="pgc3-recv-badge">${ICON.chk}&nbsp;수신됨</div>
+            <span class="pgc3-badge">패턴 #${pg.id}</span>
+            <span class="pgc3-trigger">트리거: ${pg.tg}</span>
+          </div>
+          <div class="pgc3-middle">
+            <div class="pgc3-recv">
+              <div class="pgc3-sec-hd recv">${ICON.chkCircle} 수신된 알람 (${pg.rc.length}건)</div>
+              <div class="pgc3-tags">${pg.rc.map(a=>`<span class="pgt ${a===pg.tg?'pgt-trig':'pgt-recv'}">${a}</span>`).join('')}</div>
+            </div>
+            <div class="pgc3-miss">
+              <div class="pgc3-sec-hd miss">${ICON.xCircle} 미수신 의심 (${pg.ms.length}건)</div>
+              <div class="pgc3-tags">${pg.ms.length?pg.ms.map(a=>`<span class="pgt pgt-miss">${a}</span>`).join(''):'<span style="font-size:var(--fs-2xs);color:var(--n400)">없음</span>'}</div>
+            </div>
+          </div>
+          <div class="pgc3-status">
+            <div class="pgc3-rate">매칭률 ${(pg.ra*100).toFixed(0)}%</div>
+          </div>
+        </div>
+        <div class="pgc3-meta">평균 동반확률: ${(pg.pr*100).toFixed(0)}% &nbsp;·&nbsp; 패턴크기: ${pg.sz}개 &nbsp;·&nbsp; DL에 무관하게 학습 데이터에서 추출됨</div>
+      </div>`;
+    });
+  } else {
+    h+=`<div class="ok-block"><div class="ok-icon">✓</div><p>매칭되는 패턴 그룹이 없습니다.</p></div>`;
+  }
+  h+=`</div></div>`;
+
+  /* §4 미수신 */
+  h+=`<div class="sect fade" style="animation-delay:.17s">
+    <div class="sect-hd">
+      <div class="sect-num">4</div>
+      <div class="sect-ttl">미수신 알람 의심 목록 (Missing Alarm Candidates)</div>
+      <span class="sect-cnt">${d.nm}건</span>
+    </div>`;
+  if(d.ms.length){
+    h+=`<div style="padding:.4rem .75rem;border-bottom:1px solid var(--n200);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.25rem">
+      <span style="font-size:var(--fs-xs);font-weight:700;color:var(--n700)">의심 ${d.ms.length}건</span>
+      <div class="chip-row" id="mf">
+        <button class="chip on" onclick="tc(this,'mf')">전체</button>
+        <button class="chip" onclick="tc(this,'mf')">AE+패턴</button>
+        <button class="chip" onclick="tc(this,'mf')">AE</button>
+        <button class="chip" onclick="tc(this,'mf')">패턴</button>
+      </div></div>
+    <div style="padding:.5rem .75rem"><div class="miss-list">`;
+    d.ms.forEach(m=>{
+      const ic=m.s>=2?'ih':m.s>=1?'im':'';
+      const nc=m.s<2?'mo':'';
+      h+=`<div class="miss-row">
+        <div class="miss-name ${nc}">${m.n}</div>
+        <div class="miss-score">${m.s.toFixed(4)}</div>
+        <div>${srcPill(m.src)}</div>
+        <div class="miss-det">${m.d}</div>
+        <div class="miss-interp ${ic}">${m.i}</div>
+      </div>`;
+    });
+    if(d.nm>d.ms.length) h+=`<div class="more-count">외 ${d.nm-d.ms.length}건 더보기…</div>`;
+    h+=`</div></div>`;
+  } else {
+    h+=`<div class="sect-body"><div class="ok-block"><div class="ok-icon">✓</div><p>미수신 의심 알람이 없습니다.</p></div></div>`;
+  }
+  h+=`</div>`;
+
+  const sc=document.getElementById('dScroll');
+  sc.innerHTML=h;sc.scrollTop=0;
+}
+
+function filterDL(q){
+  q=(q||'').toLowerCase();
+  document.querySelectorAll('.dlc').forEach(c=>{
+    c.style.display=(c.dataset.id||'').toLowerCase().includes(q)?'':'none';
+  });
+}
+function tc(btn,gid){
+  document.getElementById(gid).querySelectorAll('.chip').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');
+}
+(function tick(){
+  const n=new Date();
+  const d=n.toLocaleDateString('ko-KR',{year:'numeric',month:'2-digit',day:'2-digit'}).replace(/\.\s?$/,'');
+  const t=n.toLocaleTimeString('ko-KR',{hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false});
+  document.getElementById('clock').textContent=d+' '+t;
+  setTimeout(tick,1000);
+})();
+
+
+renderList();sel(0,null);
+</script>
+</body>
+</html>
