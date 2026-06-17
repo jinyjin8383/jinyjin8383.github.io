@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jin Young Jin — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/main.css">		
+</head>
+<body>
+
+<!-- 모바일 토글 -->
+<button class="mob-toggle" onclick="toggleNav()" aria-label="메뉴"><span></span><span></span><span></span></button>
+<div class="mob-overlay" onclick="closeNav()"></div>
+
+<!-- ════════ SIDEBAR ════════ -->
+<aside class="sb">
+  <div class="sb-top">
+    <div class="sb-brand-name">JIN YOUNG JIN</div>
+    <div class="sb-brand-role">Web Designer &amp; Publisher</div>
+    <div class="sb-avatar"><img src="images/profile.png" alt="진영진 프로필"></div>
+  </div>
+
+  <nav class="sb-nav">
+    <button class="nav-item nav-dash active" onclick="showPage('dash',this)"><i class="ni-ico"></i>대시보드</button>
+    <button class="nav-item nav-proj" onclick="showPage('proj',this)"><i class="ni-ico"></i>프로젝트</button>
+    <button class="nav-item nav-career" onclick="showPage('career',this)"><i class="ni-ico"></i>경력</button>
+    <button class="nav-item nav-design" onclick="showPage('design',this)"><i class="ni-ico"></i>디자인 시안</button>
+    <button class="nav-item nav-pub" onclick="showPage('pub',this)"><i class="ni-ico"></i>퍼블리싱</button>
+  </nav>
+
+  <div class="sb-bottom">
+    <div class="sb-copy">© 2026. JIN YOUNG JIN<br>All rights reserved.</div>
+  </div>
+</aside>
+
+<!-- ════════ MAIN ════════ -->
+<main class="main">
+
+  <!-- ───── DASHBOARD ───── -->
+  <section class="page active" id="page-dash">
+	<div class="hero-kicker">01. 대시보드</div>  
+    <!-- 히어로 배너 -->
+    <div class="hero rev">
+      <h1 class="hero-h1">안녕하세요, 경험을 설계하는 <em>진영진</em>입니다.</h1>
+      <p class="hero-sub">5년 이상 기업·공공기관 웹사이트를 디자인하고 직접 퍼블리싱해 왔습니다. 기획·정보구조 설계부터 UI 디자인, HTML·CSS·JavaScript 구현과 반응형 대응, 배포까지 전 과정을 다룹니다.</p>
+      <div class="hero-chips">
+        <button class="hero-chip">UI/UX 디자인</button>
+        <button class="hero-chip">웹 퍼블리싱</button>
+        <button class="hero-chip">반응형 웹</button>
+        <button class="hero-chip">디자인 시스템</button>
+        <button class="hero-chip">웹 접근성</button>
+      </div>
+      <div class="hero-actions">
+        <a class="btn-primary" href="images/사용자 경험을 고민하는 UI UX 디자이너 & 퍼블리셔_진영진.pdf" download="진영진_이력서.pdf" target="_blank" rel="noopener">이력서 다운로드</a>
+        <a class="btn-ghost" href="images/진영진 경력증명서.pdf" download="진영진_경력증명서.pdf" target="_blank" rel="noopener">KOSA 경력증명서 다운로드</a>
+      </div>
+    </div>
+
+    <!-- 1행: 최근 프로젝트 / 기술 스택 / 핵심 역량 -->
+    <div class="dash-row1 rev" style="transition-delay:.08s">
+      <!-- 최근 프로젝트 -->
+      <div class="card">
+        <div class="card-head"><h2 class="card-title">최근 프로젝트</h2></div>
+        <div class="recent-list">
+          <a class="recent-item" href="#"><div class="recent-main"><div class="recent-nm">아이건설넷 홈페이지 리뉴얼</div><div class="recent-date">2026.05 — 2026.06</div></div><span class="recent-tag">시스템 구축</span></a>
+          <a class="recent-item" href="#"><div class="recent-main"><div class="recent-nm">한국원자력 HR시스템</div><div class="recent-date">2026.04 — 2026.06</div></div><span class="recent-tag">웹사이트</span></a>
+          <a class="recent-item" href="#"><div class="recent-main"><div class="recent-nm">연구개발특구시스템</div><div class="recent-date">2026.03 — 2026.06</div></div><span class="recent-tag">웹사이트</span></a>
+          <a class="recent-item" href="#"><div class="recent-main"><div class="recent-nm">에이투엠 통합포털</div><div class="recent-date">2026.03 — 2026.05</div></div><span class="recent-tag">웹사이트</span></a>
+        </div>
+        <a class="recent-more" href="#" onclick="document.querySelector('.nav-proj').click();return false">모든 프로젝트 보기 <i class="ico-arrow"></i></a>
+      </div>
+
+      <!-- 기술 스택 -->
+      <div class="card">
+        <div class="card-head"><h2 class="card-title">기술 스택</h2></div>
+        <div class="skill-stack" data-skills>
+          <div class="skill-row"><div class="skill-top"><span class="skill-nm">HTML / CSS</span><span class="skill-pc">90%</span></div><div class="skill-tr"><div class="skill-br br1" data-w="90"></div></div></div>
+          <div class="skill-row"><div class="skill-top"><span class="skill-nm">JavaScript</span><span class="skill-pc">75%</span></div><div class="skill-tr"><div class="skill-br br2" data-w="75"></div></div></div>
+          <div class="skill-row"><div class="skill-top"><span class="skill-nm">jQuery</span><span class="skill-pc">70%</span></div><div class="skill-tr"><div class="skill-br br3" data-w="70"></div></div></div>
+          <div class="skill-row"><div class="skill-top"><span class="skill-nm">UI/UX Design</span><span class="skill-pc">90%</span></div><div class="skill-tr"><div class="skill-br br4" data-w="90"></div></div></div>
+          <div class="skill-row"><div class="skill-top"><span class="skill-nm">Figma</span><span class="skill-pc">95%</span></div><div class="skill-tr"><div class="skill-br br5" data-w="95"></div></div></div>
+          <div class="skill-row"><div class="skill-top"><span class="skill-nm">Photoshop/AI</span><span class="skill-pc">95%</span></div><div class="skill-tr"><div class="skill-br br6" data-w="95"></div></div></div>
+        </div>
+      </div>
+
+      <!-- 핵심 역량 -->
+      <div class="card">
+        <div class="card-head"><h2 class="card-title">핵심 역량</h2></div>
+        <div class="cap-grid">
+          <div class="cap-item"><span class="cap-ico"><img src="images/icon/cap-uiux.png" alt="ap-uiux"></span><span class="cap-nm">UI/UX 디자인</span><span class="cap-desc">사용자 중심 화면설계</span></div>
+          <div class="cap-item"><span class="cap-ico"><img src="images/icon/cap-web.png" alt="cap-web"></span><span class="cap-nm">웹 디자인</span><span class="cap-desc">브랜드 기반 웹 디자인</span></div>
+          <div class="cap-item"><span class="cap-ico"><img src="images/icon/cap-responsive.png" alt="cap-responsive"></span><span class="cap-nm">반응형 퍼블리싱</span><span class="cap-desc">전 디바이스 반응형 구현</span></div>
+          <div class="cap-item"><span class="cap-ico"><img src="images/icon/cap-admin.png" alt="cap-admin"></span><span class="cap-nm">관리자 시스템</span><span class="cap-desc">효율적 관리자 구축</span></div>
+          <div class="cap-item"><span class="cap-ico"><img src="images/icon/cap-maintain.png" alt="cap-maintain"></span><span class="cap-nm">운영 / 유지보수</span><span class="cap-desc">안정적 운영·관리</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- WORKING PROCESS 배너 -->
+    <div class="wp-banner rev" style="transition-delay:.1s">
+      <div class="wp-text">
+        <div class="wp-label">WORKING PROCESS</div>
+        <h2 class="wp-title">디자인부터 운영까지,<br>전 과정을 책임지고<br>완성도 높은 결과를 만듭니다.</h2>
+        <div class="wp-steps">
+          <span class="wp-step"><b>01.</b> 분석/기획</span>
+          <span class="wp-step"><b>02.</b> 디자인</span>
+          <span class="wp-step"><b>03.</b> 퍼블리싱</span>
+          <span class="wp-step"><b>04.</b> 테스트</span>
+          <span class="wp-step"><b>05.</b> 운영/관리</span>
+        </div>
+      </div>
+      <div class="wp-img"><img src="images/dashboard/working-process.png" alt="working-process"></div>
+    </div>
+
+    <!-- 대표 프로젝트 -->
+    <div class="feat-projects rev" style="transition-delay:.12s">
+      <div class="card-head"><h2 class="card-title">대표 프로젝트</h2><a class="card-more" href="#" onclick="document.querySelector('.nav-pub').click();return false">더보기 <i class="ico-arrow"></i></a></div>
+      <!-- 외부 사이트로 연결하려면 href="실제주소" target="_blank" 로 바꾸면 됩니다.
+           기본값(href="#" + onclick)은 퍼블리싱 페이지로 이동합니다. 이미지 경로는 그대로 유지하세요. -->
+      <div class="fp-grid">
+        <a class="fp-card" href="#" onclick="goPub('rnd-biz');return false">
+          <img src="images/dashboard/feat-5.png" alt="연구개발특구 사업관리시스템">
+          <div class="fp-info">
+            <span class="fp-cat">공공 · 기관</span>
+            <h3 class="fp-nm">연구개발특구 사업관리시스템</h3>
+            <p class="fp-desc">각 사업단 업무를 통합 관리하는 시스템 · 정보구조 재설계와 반응형 퍼블리싱</p>
+            <span class="fp-go">자세히 보기 →</span>
+          </div>
+        </a>
+        <a class="fp-card" href="#" onclick="goPub('icon-net');return false">
+          <img src="images/dashboard/feat-2.png" alt="아이건설넷">
+          <div class="fp-info">
+            <span class="fp-cat">기업 · 일반</span>
+            <h3 class="fp-nm">아이건설넷</h3>
+            <p class="fp-desc">풀스크린 히어로 슬라이더와 6카드 서비스 그리드의 기업 홈페이지</p>
+            <span class="fp-go">자세히 보기 →</span>
+          </div>
+        </a>
+        <a class="fp-card" href="#" onclick="goPub('yeram');return false">
+          <img src="images/dashboard/feat-1.png" alt="예람 홈페이지">
+          <div class="fp-info">
+            <span class="fp-cat">기업 · 일반</span>
+            <h3 class="fp-nm">예람 홈페이지</h3>
+            <p class="fp-desc">클립 배너 슬라이더와 뉴스·퀵링크 카드를 갖춘 반응형 기업 사이트</p>
+            <span class="fp-go">자세히 보기 →</span>
+          </div>
+        </a>
+        <a class="fp-card" href="#" onclick="goPub('kfe');return false">
+          <img src="images/dashboard/feat-3.png" alt="KFE 전자계약시스템">
+          <div class="fp-info">
+            <span class="fp-cat">공공 · 기관</span>
+            <h3 class="fp-nm">KFE 전자계약시스템</h3>
+            <p class="fp-desc">웹 접근성 인증을 고려한 반응형 메인·서브 페이지와 메인 슬라이더</p>
+            <span class="fp-go">자세히 보기 →</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───── PROJECTS ───── -->
+  <section class="page" id="page-proj">
+    <header class="page-head rev">
+      <div>
+        <h1 class="ph-title">02. 프로젝트</h1>
+        <p class="ph-sub">다양한 분야의 프로젝트 경험을 확인해보세요.</p>
+      </div>
+      <div class="ph-actions">
+        <div class="sort-sel">최신순 <i class="ico-chevron"></i></div>
+        <div class="search-box"><i class="ico-search"></i><input type="text" placeholder="프로젝트 검색..."></div>
+      </div>
+    </header>
+
+    <div class="filter-bar rev" style="transition-delay:.04s">
+      <div class="filter-tabs">
+        <button class="ftab on" onclick="filterProj('all',this)">전체</button>
+        <button class="ftab" onclick="filterProj('public',this)">공공 · 기관</button>
+        <button class="ftab" onclick="filterProj('corp',this)">기업 · 일반</button>
+        <button class="ftab" onclick="filterProj('edu',this)">연구 · 관리</button>
+        <button class="ftab" onclick="filterProj('dashboard',this)">대시보드</button>
+      </div>
+    </div>
+
+    <div class="proj-grid rev" id="proj-grid" style="transition-delay:.08s">
+      <article class="pcard" data-cat="public">
+        <div class="pcard-thumb"><img src="images/디자인시안/연구개발특구 사업관리시스템/리뉴얼후.png" alt="연구개발특구 사업관리시스템"></div>
+        <div class="pcard-body">
+          <div class="pcard-tags"><span class="pcard-tag">공공 · 기관</span></div>
+          <h3 class="pcard-title">연구개발특구 사업관리시스템</h3>
+          <p class="pcard-desc"> 공공연구기관의 기술을 활용한 특구 내 기업들을 위한 시스템.<br>설계와 디자인 반응형 퍼블리싱을 담당했습니다.</p>
+          <div class="pcard-period">2026.03 — 2026.06</div>
+        </div>
+      </article>
+
+      <article class="pcard" data-cat="public dashboard">
+        <div class="pcard-thumb"><img src="images/디자인시안/한국원자력 HR 시스템/한국원자력 HR시스템.png" alt="한국원자력 HR시스템"></div>
+        <div class="pcard-body">
+          <div class="pcard-tags"><span class="pcard-tag">공공 · 기관</span><span class="pcard-tag">대시보드</span></div>
+          <h3 class="pcard-title">한국원자력 HR시스템</h3>
+          <p class="pcard-desc">기업의 ESS 경영 활동을 한곳에서 관리·시각화하는 통합 플랫폼.<br>대시보드 UI와 차트 인터랙션을 구현했습니다.</p>
+          <div class="pcard-period">2026.04 — 2026.06</div>
+        </div>
+      </article>
+
+      <article class="pcard" data-cat="edu public">
+        <div class="pcard-thumb"><img src="images/디자인시안/한국생명공학연구원/한국생명공학연구원/LMO정보시스템.png" alt="한국생명공학연구원"></div>
+        <div class="pcard-body">
+          <div class="pcard-tags"><span class="pcard-tag">연구 · 관리</span><span class="pcard-tag">웹사이트</span><span class="pcard-tag">공공 · 기관</span></div>
+          <h3 class="pcard-title">시험·연구용 LMO 정보시스템</h3>
+          <p class="pcard-desc">한국생명공학연구원 메인 시스템 홈페이지.<br>전반적인 밝은 색상으로 디자인 했습니다.</p>
+          <div class="pcard-period">2026.05 — 2026.05</div>
+        </div>
+      </article>
+
+      <article class="pcard" data-cat="edu">
+        <div class="pcard-thumb"><img src="images/디자인시안/LABS 고도화/홈페이지 리뉴얼.png" alt="LABS 연구관리시스템"></div>
+        <div class="pcard-body">
+          <div class="pcard-tags"><span class="pcard-tag">연구 · 관리</span></div>
+          <h3 class="pcard-title">LABS 연구관리시스템</h3>
+          <p class="pcard-desc">연구 활동 종사자,안전관리자가 안전 정보를 통합 관리.<br>웹페이지의 정보를 가독성 높이는 방식으로 설계하였습니다.</p>
+          <div class="pcard-period">2026.03 — 2026.05</div>
+        </div>
+      </article>
+
+      <article class="pcard" data-cat="corp">
+        <div class="pcard-thumb"><img src="images/dashboard/feat-1.png" alt="기업 홈페이지 리뉴얼"></div>
+        <div class="pcard-body">
+          <div class="pcard-tags"><span class="pcard-tag">기업 · 일반</span><span class="pcard-tag">웹사이트</span></div>
+          <h3 class="pcard-title">예람 기업 홈페이지 리디자인</h3>
+          <p class="pcard-desc">브랜드 톤에 맞춘 UI와 반응형 마크업으로 재구축했습니다.</p>
+          <div class="pcard-period">2026.05 — 2026.06</div>
+        </div>
+      </article>
+
+      <article class="pcard" data-cat="edu">
+        <div class="pcard-thumb"><img src="images/디자인시안/입주관리시스템/입주관리시스템 메인 개편.png" alt="입주관리시스템"></div>
+        <div class="pcard-body">
+          <div class="pcard-tags"><span class="pcard-tag">공공 · 기관</span><span class="pcard-tag">웹사이트</span></div>
+          <h3 class="pcard-title">연구개발특구 입주관리시스템</h3>
+          <p class="pcard-desc">온라인 강의·수강 신청을 한 번에 처리하는 교육 플랫폼.<br>학습 흐름을 단순화한 UI로 설계했습니다.</p>
+          <div class="pcard-period">2025.07 — 2025.11</div>
+        </div>
+      </article>
+
+      <article class="pcard" data-cat="corp">
+        <div class="pcard-thumb"><img src="images/dashboard/feat-2.png" alt="아이건설넷 브랜드 사이트"></div>
+        <div class="pcard-body">
+          <div class="pcard-tags"><span class="pcard-tag">기업 · 일반</span><span class="pcard-tag">웹사이트</span></div>
+          <h3 class="pcard-title">아이건설넷 기업 홈페이지 리디자인</h3>
+          <p class="pcard-desc">브랜드 스토리를 담은 반응형 사이트.<br>홈페이지의 분산되어있던 중요한 정보를 단순화한 UI로 설계했습니다.</p>
+          <div class="pcard-period">2026.05 — 2026.06</div>
+        </div>
+      </article>
+
+      <article class="pcard" data-cat="edu public">
+        <div class="pcard-thumb"><img src="images/디자인시안/kfe 전자계약시스템/kfe 전자계약시스템 메인.png" alt="전자계약시스템"></div>
+        <div class="pcard-body">
+          <div class="pcard-tags"><span class="pcard-tag">공공 · 기관</span><span class="pcard-tag">연구 · 관리</span><span class="pcard-tag">웹사이트</span></div>
+          <h3 class="pcard-title">kfe 전자계약시스템</h3>
+          <p class="pcard-desc">계약, 입찰, 검수예약, 대금지급 등을 처리하는 B2B 행정 시스템.<br>사용자 업무 흐름을 고려하여 주요 기능에 빠르게 접근할 수 있도록 설계했습니다.</p>
+          <div class="pcard-period">2025.07 — 2025.09</div>
+        </div>
+      </article>
+      <article class="pcard" data-cat="edu dashboard">
+        <div class="pcard-thumb"><img src="images/디자인시안/에이투엠 통합포털/포털_260319.png" alt="통합포털"></div>
+        <div class="pcard-body">
+          <div class="pcard-tags"><span class="pcard-tag">연구 · 관리</span><span class="pcard-tag">대시보드</span></div>
+          <h3 class="pcard-title">A2M통합 포털시스템</h3>
+          <p class="pcard-desc">전자결재, 근태관리, 일정관리 등 핵심 업무 기능을 통합한 그룹웨어 포털.<br>사용 빈도가 높은 메뉴를 중심으로 구성하여 업무 효율성과 접근성을 높였습니다.</p>
+          <div class="pcard-period">2025.07 — 2025.09</div>
+        </div>
+      </article>
+      <article class="pcard" data-cat="edu public dashboard">
+        <div class="pcard-thumb"><img src="images/디자인시안/섬유개발연구원/Portal 업무포털.png" alt="랜딩 페이지 디자인"></div>
+        <div class="pcard-body">
+          <div class="pcard-tags"><span class="pcard-tag">공공 · 기관</span><span class="pcard-tag">연구 · 관리</span><span class="pcard-tag">대시보드</span></div>
+          <h3 class="pcard-title">섬유개발연구원 통합시스템</h3>
+          <p class="pcard-desc">개인 업무, 연구과제, 일정관리 기능을 통합한 업무 포털 시스템.<br>핵심 정보를 대시보드 형태로 구성하여 업무 효율성과 정보 접근성을 높였습니다.</p>
+          <div class="pcard-period">2025.07 — 2025.09</div>
+        </div>
+      </article>
+      <article class="pcard" data-cat="edu public dashboard">
+        <div class="pcard-thumb"><img src="images/디자인시안/전력연 스마트 알림/smart.PNG" alt="랜딩 페이지 디자인"></div>
+        <div class="pcard-body">
+          <div class="pcard-tags"><span class="pcard-tag">공공 · 기관</span><span class="pcard-tag">연구 · 관리</span><span class="pcard-tag">대시보드</span></div>
+          <h3 class="pcard-title">전력연 스마트 알림 서비스</h3>
+          <p class="pcard-desc">설비 데이터 기반의 이상 탐지 및 패턴 분석 기능을 제공하며, 주요 정보를 한눈에 파악할 수 있도록 구성한 관제 시스템 UI입니다.</p>
+          <div class="pcard-period">2025.07 — 2025.09</div>
+        </div>
+      </article>
+      <article class="pcard" data-cat="edu public">
+        <div class="pcard-thumb"><img src="images/디자인시안/조달청/무제-1.png" alt="랜딩 페이지 디자인"></div>
+        <div class="pcard-body">
+          <div class="pcard-tags"><span class="pcard-tag">공공 · 기관</span><span class="pcard-tag">연구 · 관리</span><span class="pcard-tag">웹사이트</span></div>
+          <h3 class="pcard-title">조달청</h3>
+          <p class="pcard-desc">공기관과 기업 간의 조달 업무를 디지털 환경에서 효율적으로 처리할 수 있도록 구축한 전자조달 플랫폼입니다</p>
+          <div class="pcard-period">2021.04 — 2025.05</div>
+        </div>
+      </article>		
+    </div>
+  </section>
+
+  <!-- ───── CAREER ───── -->
+  <section class="page" id="page-career">
+    <header class="page-head rev">
+      <div>
+        <h1 class="ph-title">03. 경력</h1>
+        <p class="ph-sub">지금까지의 경험과 성장을 소개합니다.</p>
+      </div>
+    </header>
+    <div class="career-stats rev" style="transition-delay:.03s">
+      <div class="cstat">
+        <div class="cstat-num">6<span class="cstat-plus">+</span><span class="cstat-unit">년</span></div>
+        <div class="cstat-lb">총 실무 경력</div>
+        <div class="cstat-sub">2020년 ~ 현재</div>
+      </div>
+      <div class="cstat">
+        <div class="cstat-num">UI/UX</div>
+        <div class="cstat-lb">핵심 분야</div>
+        <div class="cstat-sub">디자인 · 반응형 퍼블리싱</div>
+      </div>
+    </div>
+
+    <div class="career-layout rev" style="transition-delay:.06s">
+      <div class="tl-wrap">
+        <div class="tl-item">
+          <div class="tl-dot cur"></div>
+          <div class="tl-card">
+            <span class="tl-period">2025.07 — 현재</span>
+            <h3 class="tl-co">㈜에이투엠 · UI/UX팀 대리</h3>
+            <p class="tl-desc">
+				- 국생명공학연구원 시험·연구용 LMO정보시스템 고도화<br>
+                - 한국전력공사 전력연구원 ADMS-WEB 기반 배전망 종합운영 사용자 WEB 인터페이스 개발<br>
+                - 2025년도 연구개발특구 입주관리시스템 고도화<br>
+                - KISTI 스마트워크시스템 개편<br>
+                - 에이투엠 대표 홈페이지 유지관리<br>
+                - 에이투엠 인사인력관리 경영정보시스템 개편<br>
+                - 실시간 배전망 정전맵 사용자 WEB GIS 인터페이스 고도화<br>
+                - 화학연 종합정보시스템 유지관리</p>
+            <div class="tl-chips"><span class="tl-chip">UI/UX</span><span class="tl-chip">HTML/CSS</span><span class="tl-chip">JavaScript</span></div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-card">
+            <span class="tl-period">2021.04 — 2025.05</span>
+            <h3 class="tl-co">대전대학교 산학협력단 · 조달정보팀 주임</h3>
+            <p class="tl-desc">
+				- 조달정보시스템 통합위탁운영 및 유지관리 사업<br>
+                - 조달청 홈페이지 웹표준 접근성 참여<br>
+                - 온나라 문서 및 내부메일 운영 및 유지보수</p>
+            <div class="tl-chips"><span class="tl-chip">웹표준</span><span class="tl-chip">반응형</span><span class="tl-chip">웹접근성</span><span class="tl-chip">HTML/CSS</span><span class="tl-chip">유지관리</span></div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-card">
+            <span class="tl-period">2020.03 — 2021.03</span>
+            <h3 class="tl-co">(사)대전광역시장애인단체총연합회 · 웹디자이너</h3>
+            <p class="tl-desc">
+				- 대전장애인맞춤복지정보[정보드림]서비스 리뉴얼(https://djid.or.kr/main.do)<br>
+                - 웹페이지 ,뷰페이지 메인배너 디자인<br>
+                - 온라인 SNS 카드뉴스 디자인<br>
+                - 홈페이지 홍보 포스터 디자인</p>
+            <div class="tl-chips"><span class="tl-chip">웹디자인</span><span class="tl-chip">Photoshop</span><span class="tl-chip">Illustrator</span><span class="tl-chip">카드뉴스</span></div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-card">
+            <span class="tl-period">2015.03 — 2019.02</span>
+            <h3 class="tl-co">우송대학교 · 미디어디자인 (4년제 졸업)</h3>
+            <p class="tl-desc">미디어디자인을 전공하며 시각디자인과 그래픽 표현의 기초를 폭넓게 익혔습니다. 여러 디자인 프로젝트와 졸업 작품을 직접 기획하고 끝까지 완성해 보면서, 결과물에 책임지는 태도를 자연스럽게 몸에 익혔습니다.<br><br>학점 3.5/4.5로 졸업했으며, 이때 쌓은 디자인 감각과 표현력이 지금의 UI/UX 작업을 받쳐 주는 토대가 되고 있습니다.</p>
+            <div class="tl-chips"><span class="tl-chip">미디어디자인</span><span class="tl-chip">시각디자인</span><span class="tl-chip">그래픽</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="side-panel">
+        <div class="sp-card">
+          <div class="sp-head">핵심 역량</div>
+          <div class="sp-body">
+            <div class="cap-grid">
+              <div class="cap-item"><span class="cap-ico"><img src="images/icon/cap-uiux.png" alt="UI/UX 디자인"></span><span class="cap-nm">UI/UX 디자인</span></div>
+              <div class="cap-item"><span class="cap-ico"><img src="images/icon/cap-web.png" alt="웹디자인"></span><span class="cap-nm">웹 디자인</span></div>
+              <div class="cap-item"><span class="cap-ico"><img src="images/icon/cap-responsive.png" alt="반응형"></span><span class="cap-nm">반응형 퍼블리싱</span></div>
+              <div class="cap-item"><span class="cap-ico"><img src="images/icon/cap-admin.png" alt="관리자"></span><span class="cap-nm">관리자 시스템</span></div>
+              <div class="cap-item"><span class="cap-ico"><img src="images/icon/cap-maintain.png" alt="유지보수"></span><span class="cap-nm">운영 / 유지보수</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="sp-card">
+          <div class="sp-head">주요 기술</div>
+          <div class="sp-body">
+            <div class="skill-stack" data-skills>
+              <div class="skill-row"><div class="skill-top"><span class="skill-nm">HTML / CSS</span><span class="skill-pc">90%</span></div><div class="skill-tr"><div class="skill-br br1" data-w="90"></div></div></div>
+              <div class="skill-row"><div class="skill-top"><span class="skill-nm">JavaScript</span><span class="skill-pc">75%</span></div><div class="skill-tr"><div class="skill-br br2" data-w="75"></div></div></div>
+              <div class="skill-row"><div class="skill-top"><span class="skill-nm">jQuery</span><span class="skill-pc">70%</span></div><div class="skill-tr"><div class="skill-br br3" data-w="70"></div></div></div>
+              <div class="skill-row"><div class="skill-top"><span class="skill-nm">UI/UX Design</span><span class="skill-pc">90%</span></div><div class="skill-tr"><div class="skill-br br4" data-w="90"></div></div></div>
+              <div class="skill-row"><div class="skill-top"><span class="skill-nm">Figma</span><span class="skill-pc">95%</span></div><div class="skill-tr"><div class="skill-br br5" data-w="95"></div></div></div>
+              <div class="skill-row"><div class="skill-top"><span class="skill-nm">Photoshop/AI</span><span class="skill-pc">95%</span></div><div class="skill-tr"><div class="skill-br br6" data-w="95"></div></div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="sp-card">
+          <div class="sp-head">사용 툴</div>
+          <div class="sp-body">
+            <div class="tool-grid">
+              <div class="tool-item"><span class="tool-logo"><img src="images/사용툴/about_img_01.svg" alt="HTML"></span><span class="tool-nm">HTML</span></div>
+              <div class="tool-item"><span class="tool-logo"><img src="images/사용툴/about_img_02.svg" alt="CSS"></span><span class="tool-nm">CSS</span></div>
+              <div class="tool-item"><span class="tool-logo"><img src="images/사용툴/about_img_03.svg" alt="JavaScript"></span><span class="tool-nm">JavaScript</span></div>
+              <div class="tool-item"><span class="tool-logo"><img src="images/사용툴/about_img_04.svg" alt="Figma"></span><span class="tool-nm">Figma</span></div>
+              <div class="tool-item"><span class="tool-logo"><img src="images/사용툴/about_img_05.svg" alt="Git"></span><span class="tool-nm">Git</span></div>
+              <div class="tool-item"><span class="tool-logo"><img src="images/사용툴/about_img_06.svg" alt="Photoshop"></span><span class="tool-nm">Photoshop</span></div>
+              <div class="tool-item"><span class="tool-logo"><img src="images/사용툴/about_img_07.svg" alt="AI"></span><span class="tool-nm">AI</span></div>
+			  <div class="tool-item"><span class="tool-logo"><img src="images/사용툴/about_img_08.svg" alt="VS Code"></span><span class="tool-nm">VS Code</span></div>
+              <div class="tool-item"><span class="tool-logo"><img src="images/사용툴/about_img_09.svg" alt="eclipse"></span><span class="tool-nm">eclipse</span></div>	
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───── DESIGN ───── -->
+  <section class="page" id="page-design">
+    <header class="page-head rev">
+      <div>
+        <h1 class="ph-title">04. 디자인 시안</h1>
+        <p class="ph-sub">다양한 디자인 시안을 확인해보세요.</p>
+      </div>
+      <div class="ph-actions">
+        <div class="sort-sel">최신순 <i class="ico-chevron"></i></div>
+      </div>
+    </header>
+
+    <div class="filter-bar rev" style="transition-delay:.04s">
+      <div class="filter-tabs">
+        <button class="ftab on" onclick="filterDesign('all',this)">전체</button>
+        <button class="ftab" onclick="filterDesign('web',this)">웹사이트</button>
+        <button class="ftab" onclick="filterDesign('dashboard',this)">대시보드</button>
+        <button class="ftab" onclick="filterDesign('banner',this)">배너</button>
+      </div>
+    </div>
+
+    <div class="design-gallery rev" id="design-grid" style="transition-delay:.08s">
+      <a class="gcard g-tall" data-cat="dashboard" href="#"><img src="images/디자인시안/한국원자력 HR 시스템/한국원자력 HR시스템.png" alt="한국원자력 HR시스템"><span class="gcard-cap">한국원자력 HR시스템 · 대시보드</span></a>
+      <a class="gcard g-tall" data-cat="web" href="#"><img src="images/디자인시안/kfe 전자계약시스템/kfe 전자계약시스템 메인.png" alt="kfe 전자계약시스템"><span class="gcard-cap">kfe 전자계약시스템 · 웹</span></a>
+      <a class="gcard g-tall" data-cat="web" href="#"><img src="images/디자인시안/LABS 고도화/인트로.png" alt="LABS 고도화"><span class="gcard-cap">LABS 고도화 · 웹</span></a>
+      <a class="gcard g-tall" data-cat="dashboard" href="#"><img src="images/디자인시안/섬유개발연구원/Portal 업무포털.png" alt="섬유개발연구원 Portal"><span class="gcard-cap">섬유개발연구원 Portal · 대시보드</span></a>
+      <a class="gcard g-tall" data-cat="dashboard" href="#"><img src="images/디자인시안/에이투엠 통합포털/포털_260319.png" alt="에이투엠 통합포털"><span class="gcard-cap">에이투엠 통합포털 · 대시보드</span></a>
+      <a class="gcard g-tall" data-cat="web" href="#"><img src="images/디자인시안/연구개발특구 사업관리시스템/리뉴얼후.png" alt="연구개발특구 사업관리시스템"><span class="gcard-cap">연구개발특구 사업관리시스템 · 웹</span></a>
+      <a class="gcard g-tall" data-cat="web" href="#"><img src="images/디자인시안/입주관리시스템/입주관리시스템 메인 개편.png" alt="연구개발특구 입주관리시스템"><span class="gcard-cap">연구개발특구 입주관리시스템 · 웹</span></a>
+      <a class="gcard g-tall" data-cat="web" href="#"><img src="images/디자인시안/한국생명공학연구원/한국생명공학연구원/LMO정보시스템.png" alt="LMO정보시스템"><span class="gcard-cap">LMO정보시스템 · 웹</span></a>
+      <a class="gcard g-tall" data-cat="web" href="#"><img src="images/디자인시안/아이건설넷/아이건설넷.png" alt="아이건설넷"><span class="gcard-cap">아이건설넷 · 웹</span></a>
+      <a class="gcard g-tall" data-cat="web" href="#"><img src="images/디자인시안/예람/feat-1.png" alt="예람"><span class="gcard-cap">예람 · 웹</span></a>
+      <a class="gcard" data-cat="banner" href="#"><img src="images/디자인시안/배너/[정보시스템] 제7기 과기정통부 LMO SAFETY 기자단 합격자 발표.png" alt="배너 시안"><span class="gcard-cap">메인 배너 · 배너</span></a>
+      <a class="gcard" data-cat="banner" href="#"><img src="images/디자인시안/배너/[정보시스템]2026년 LMO 찾아가는 교육 사전접수 안내.jpg" alt="배너 시안"><span class="gcard-cap">메인 배너 · 배너</span></a>		
+    </div>
+  </section>
+
+  <!-- ───── PUBLISHING ───── -->
+  <section class="page" id="page-pub">
+    <header class="page-head rev">
+      <div>
+        <h1 class="ph-title">05. 퍼블리싱</h1>
+        <p class="ph-sub">완성도 높은 퍼블리싱 결과물을 확인해보세요.</p>
+      </div>
+      <div class="ph-actions">
+        <a class="btn-go" id="pubGoBtn" href="#" target="_blank" rel="noopener">사이트 바로가기</a>
+      </div>
+    </header>
+
+    <div class="pub-layout rev" style="transition-delay:.06s">
+      <!-- 프로젝트 목록 (클릭 시 미리보기/정보 교체) -->
+      <div class="sp-card pub-list-card">
+        <div class="sp-head">퍼블리싱 프로젝트 <span class="pub-count" id="pubCount">7</span></div>
+        <div class="pub-list" id="pubList"><!-- JS로 생성 --></div>
+      </div>
+
+      <!-- 미리보기 -->
+      <div class="pub-main">
+        <div class="pub-head">
+          <div class="pub-head-info">
+            <h3 class="pub-head-nm" id="pubHeadNm"></h3>
+            <div class="pub-head-meta" id="pubHeadMeta"></div>
+          </div>
+          <div class="pub-head-tech">
+            <span class="pub-head-tech-lb">사용 기술</span>
+            <div class="pub-stack" id="pubStack"></div>
+          </div>
+        </div>
+        <div class="pub-preview"><img id="pubImage" src="" alt="프로젝트 화면"></div>
+      </div>
+    </div>
+
+    <div class="pwork-wrap rev" style="transition-delay:.1s">
+      <div class="pwork-grid">
+        <div class="pwork-item"><span class="pwork-ico"><img src="images/icon/icon-responsive.png" alt="반응형"></span><span class="pwork-nm">반응형 웹 구현</span></div>
+        <div class="pwork-item"><span class="pwork-ico"><img src="images/icon/icon-web-standard.png" alt="표준"></span><span class="pwork-nm">웹 표준 준수</span></div>
+        <div class="pwork-item"><span class="pwork-ico"><img src="images/icon/icon-cross-browser.png" alt="브라우징"></span><span class="pwork-nm">크로스 브라우징</span></div>
+        <div class="pwork-item"><span class="pwork-ico"><img src="images/icon/icon-performance.png" alt="최적화"></span><span class="pwork-nm">성능 최적화</span></div>
+        <div class="pwork-item"><span class="pwork-ico"><img src="images/icon/icon-accessibility.png" alt="고려"></span><span class="pwork-nm">접근성 고려</span></div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ════════ 라이트박스 (디자인 시안 크게 보기) ════════ -->
+<div class="lightbox" id="lightbox" aria-hidden="true">
+  <div class="lb-inner">
+    <button class="lb-close" id="lbClose" aria-label="닫기"></button>
+    <button class="lb-nav lb-prev" id="lbPrev" aria-label="이전">&#8249;</button>
+    <img class="lb-img" id="lbImg" src="" alt="">
+    <button class="lb-nav lb-next" id="lbNext" aria-label="다음">&#8250;</button>
+    <div class="lb-cap" id="lbCap"></div>
+  </div>
+</div>
+
+<!-- 스크롤 안내 -->
+<button class="scroll-hint" id="scrollHint" aria-label="아래로 스크롤">아래로 스크롤<span class="scroll-hint-arrow"></span></button>
+
+<script>
+function toggleNav(){document.body.classList.toggle('nav-open')}
+function closeNav(){document.body.classList.remove('nav-open')}
+
+function showPage(id,btn){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
+  document.getElementById('page-'+id).classList.add('active');
+  btn.classList.add('active');
+  if(window.innerWidth<=980) closeNav();
+
+  // 진입 시 리빌 + 스킬바 재생
+  const page=document.getElementById('page-'+id);
+  page.querySelectorAll('.rev').forEach(el=>{el.classList.remove('in');setTimeout(()=>obs.observe(el),10)});
+  animateSkills(page);
+  window.scrollTo({top:0,behavior:'smooth'});
+  setTimeout(updateScrollHint,500);
+}
+
+function filterProj(cat,btn){
+  btn.closest('.filter-tabs').querySelectorAll('.ftab').forEach(t=>t.classList.remove('on'));
+  btn.classList.add('on');
+  document.querySelectorAll('#proj-grid .pcard').forEach(c=>{
+    c.style.display=(cat==='all'||c.dataset.cat.split(' ').includes(cat))?'':'none';
+  });
+}
+
+function filterDesign(cat,btn){
+  btn.closest('.filter-tabs').querySelectorAll('.ftab').forEach(t=>t.classList.remove('on'));
+  btn.classList.add('on');
+  document.querySelectorAll('#design-grid .gcard').forEach(c=>{
+    c.style.display=(cat==='all'||c.dataset.cat.split(' ').includes(cat))?'':'none';
+  });
+}
+
+// 스킬바 애니메이션 (범위 지정 가능, 하드코딩 없이 data-w 사용)
+function animateSkills(scope){
+  const root=scope||document;
+  root.querySelectorAll('.skill-br[data-w]').forEach(b=>{b.style.width='0'});
+  setTimeout(()=>{
+    root.querySelectorAll('.skill-br[data-w]').forEach(b=>{b.style.width=b.dataset.w+'%'});
+  },220);
+}
+
+const obs=new IntersectionObserver(
+  es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');obs.unobserve(e.target)}}),
+  {threshold:0.06}
+);
+document.querySelectorAll('.rev').forEach(el=>obs.observe(el));
+
+// 초기 로드 시 대시보드 스킬바 재생
+window.addEventListener('load',()=>animateSkills(document.getElementById('page-dash')));
+
+// ───── 라이트박스 (디자인 시안 크게 보기) ─────
+const lightbox=document.getElementById('lightbox');
+const lbImg=document.getElementById('lbImg');
+const lbCap=document.getElementById('lbCap');
+let lbCards=[],lbIndex=0;
+
+function openLightbox(card){
+  // 현재 보이는(필터 적용된) 카드만 대상으로 좌우 이동
+  lbCards=[...document.querySelectorAll('#design-grid .gcard')].filter(c=>c.style.display!=='none');
+  lbIndex=lbCards.indexOf(card);
+  if(lbIndex<0) lbIndex=0;
+  renderLightbox();
+  lightbox.classList.add('open');
+  lightbox.setAttribute('aria-hidden','false');
+  document.body.style.overflow='hidden';
+}
+function renderLightbox(){
+  const card=lbCards[lbIndex];
+  const img=card.querySelector('img');
+  const cap=card.querySelector('.gcard-cap');
+  lbImg.src=img.getAttribute('src');
+  lbImg.alt=img.getAttribute('alt')||'';
+  lbCap.textContent=cap?cap.textContent:'';
+}
+function closeLightbox(){
+  lightbox.classList.remove('open');
+  lightbox.setAttribute('aria-hidden','true');
+  document.body.style.overflow='';
+}
+function lbNav(dir){
+  if(!lbCards.length) return;
+  lbIndex=(lbIndex+dir+lbCards.length)%lbCards.length;
+  renderLightbox();
+}
+
+// 카드 클릭 → 팝업 (이벤트 위임)
+document.getElementById('design-grid').addEventListener('click',e=>{
+  const card=e.target.closest('.gcard');
+  if(!card) return;
+  e.preventDefault();
+  openLightbox(card);
+});
+document.getElementById('lbClose').addEventListener('click',closeLightbox);
+document.getElementById('lbPrev').addEventListener('click',e=>{e.stopPropagation();lbNav(-1)});
+document.getElementById('lbNext').addEventListener('click',e=>{e.stopPropagation();lbNav(1)});
+lightbox.addEventListener('click',e=>{if(e.target===lightbox) closeLightbox()});
+document.addEventListener('keydown',e=>{
+  if(!lightbox.classList.contains('open')) return;
+  if(e.key==='Escape') closeLightbox();
+  else if(e.key==='ArrowLeft') lbNav(-1);
+  else if(e.key==='ArrowRight') lbNav(1);
+});
+
+// ───── 퍼블리싱 인터랙티브 쇼케이스 ─────
+const PUB_PROJECTS=[
+  {key:'yeram', name:'예람 홈페이지', type:'기업 · 일반', sub:'웹사이트',
+   period:'2024.11 — 2025.02', scope:'웹사이트 퍼블리싱',
+   stack:['HTML','CSS','JavaScript','Figma','Photoshop','AI'],
+   features:['오벌 클립 배너 슬라이더','뉴스·퀵링크 카드','인증마크 바','전 디바이스 반응형'], live:'#'},
+  {key:'icon-net', name:'아이건설넷', type:'기업 · 일반', sub:'웹사이트',
+   period:'2025.01 — 2025.04', scope:'웹사이트 퍼블리싱',
+   stack:['HTML','CSS','JavaScript','Figma','Photoshop','AI'],
+   features:['풀스크린 히어로 슬라이더','6카드 서비스 그리드','퀵 서비스·인증 바','스크롤 인터랙션'], live:'#'},
+  {key:'rnd-biz', name:'연구개발특구 사업관리시스템', type:'공공 · 기관', sub:'시스템 구축',
+   period:'2024.01 — 2024.07', scope:'시스템 퍼블리싱',
+   stack:['HTML','CSS','JavaScript','Figma','Photoshop','AI'],
+   features:['반응형 웹 구현','사용자 경험형 대시보드','실시간 데이터 시각화','접근성 및 성능 최적화'], live:'#'},
+  {key:'rnd-tenant', name:'연구개발특구 입주관리시스템', type:'공공 · 기관', sub:'시스템 구축',
+   period:'2023.08 — 2023.12', scope:'시스템 퍼블리싱',
+   stack:['HTML','CSS','JavaScript','Figma','Photoshop','AI'],
+   features:['입주 신청·심사 화면 구현','관리자 대시보드','복잡한 폼·테이블 UI','권한별 화면 분기'], live:'#'},
+  {key:'power-alert', name:'전력연 스마트 알림', type:'공공 · 기관', sub:'시스템 구축',
+   period:'2025.03 — 2025.05', scope:'시스템 퍼블리싱',
+   stack:['HTML','CSS','JavaScript','Figma','Photoshop','AI'],
+   features:['실시간 알림 UI','알림 설정·구독 관리','상태별 배지·필터','모바일 우선 대응'], live:'#'},
+  {key:'kfe', name:'KFE 전자계약시스템', type:'공공 · 기관', sub:'시스템 구축',
+   period:'2025.02 — 2025.06', scope:'시스템 퍼블리싱',
+   stack:['HTML','CSS','JavaScript','Figma','Photoshop','AI'],
+   features:['전자계약 단계별 플로우','전자서명 UI 연동','계약 현황 대시보드','문서 미리보기 모달'], live:'#'},
+  {key:'toxico', name:'독성연 홈페이지', type:'공공 · 기관', sub:'웹사이트',
+   period:'2024.09 — 2024.12', scope:'웹사이트 퍼블리싱',
+   stack:['HTML','CSS','JavaScript','Figma','Photoshop','AI'],
+   features:['반응형 메인·서브 페이지','연구·사업 소개 구성','웹 접근성 인증 대응','메인 슬라이더 구현'], live:'#'},
+  {key:'a2m', name:'에이투엠 경영정보시스템', type:'기업 · 일반', sub:'시스템 구축',
+   period:'2025.05 — 2025.08', scope:'시스템 퍼블리싱',
+   stack:['HTML','CSS','JavaScript','Figma','Photoshop','AI'],
+   features:['경영정보 대시보드','통계·리포트 화면','데이터 테이블·필터','권한별 메뉴 구성'], live:'#'}
+];
+const TAG_CLS={'HTML5':'html','HTML':'html',
+  'CSS3':'css','CSS':'css',
+  'JavaScript':'js','jQuery':'jq',
+  'Responsive':'res','SCSS':'scss','Swiper':'swiper','AOS':'aos',
+  'Figma':'figma','Photoshop':'ps','AI':'ai'};
+
+const pubListEl=document.getElementById('pubList');
+const pubImage=document.getElementById('pubImage');
+const pubGoBtn=document.getElementById('pubGoBtn');
+const pubHeadNm=document.getElementById('pubHeadNm');
+const pubHeadMeta=document.getElementById('pubHeadMeta');
+const pubStack=document.getElementById('pubStack');
+document.getElementById('pubCount').textContent=PUB_PROJECTS.length;
+
+let curPubIndex=0;
+
+// 목록 생성 (하드코딩 없이 데이터 기반)
+pubListEl.innerHTML=PUB_PROJECTS.map((p,i)=>`
+  <button class="pub-li${i===0?' active':''}" data-i="${i}">
+    <span class="pub-li-thumb"><img src="images/publish/${p.key}-laptop.png" alt=""></span>
+    <span class="pub-li-main">
+      <span class="pub-li-nm">${p.name}</span>
+      <span class="pub-li-type">${p.type} · ${p.sub}</span>
+    </span>
+  </button>`).join('');
+
+function renderPub(p){
+  pubHeadNm.textContent=p.name;
+  pubHeadMeta.innerHTML=`<span>${p.type} · ${p.sub}</span><span class="pub-head-sep"></span><span>${p.period}</span>`;
+  pubStack.innerHTML=p.stack.map(s=>`<span class="ptag ptag-${TAG_CLS[s]||'js'}">${s}</span>`).join('');
+
+  // 사이트 바로가기 — 공개 사이트가 있으면 활성, 없으면 비활성
+  if(p.live){
+    pubGoBtn.href=p.live;
+    pubGoBtn.classList.remove('is-off');
+    pubGoBtn.removeAttribute('aria-disabled');
+  }
+
+  pubImage.src=`images/publish/${p.key}-laptop.png`;
+}
+
+pubListEl.addEventListener('click',e=>{
+  const btn=e.target.closest('.pub-li');
+  if(!btn) return;
+  pubListEl.querySelectorAll('.pub-li').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  curPubIndex=+btn.dataset.i;
+  renderPub(PUB_PROJECTS[curPubIndex]);
+});
+renderPub(PUB_PROJECTS[0]);
+
+/* 대시보드 대표 프로젝트 → 퍼블리싱의 해당 프로젝트로 연결 (key 기준) */
+function goPub(key){
+  const i=PUB_PROJECTS.findIndex(p=>p.key===key);
+  showPage('pub', document.querySelector('.nav-pub'));
+  if(i<0) return;
+  curPubIndex=i;
+  const btn=pubListEl.querySelector(`.pub-li[data-i="${i}"]`);
+  pubListEl.querySelectorAll('.pub-li').forEach(b=>b.classList.remove('active'));
+  if(btn){ btn.classList.add('active'); btn.scrollIntoView({block:'nearest'}); }
+  renderPub(PUB_PROJECTS[i]);
+}
+
+// ───── 스크롤 안내 인디케이터 ─────
+const scrollHint=document.getElementById('scrollHint');
+function updateScrollHint(){
+  // 내려갈 내용이 남아 있을 때만 노출, 화면에 다 들어오거나 맨 아래에 닿으면 숨김
+  const doc=document.documentElement;
+  const remaining=doc.scrollHeight-(window.scrollY+window.innerHeight);
+  if(remaining>40) scrollHint.classList.add('show');
+  else scrollHint.classList.remove('show');
+}
+scrollHint.addEventListener('click',()=>{
+  // 페이지 맨 아래로 부드럽게 이동
+  window.scrollTo({top:document.documentElement.scrollHeight,behavior:'smooth'});
+});
+window.addEventListener('scroll',updateScrollHint,{passive:true});
+window.addEventListener('resize',updateScrollHint);
+window.addEventListener('load',()=>setTimeout(updateScrollHint,300));
+</script>
+</body>
+</html>
