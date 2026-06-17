@@ -1,0 +1,714 @@
+@charset "utf-8";
+
+.content {
+    width: 100%;
+    min-height: 100vh;
+    min-width: 1800px;
+    margin: 0;
+    padding: 0 20px 15px;
+    overflow: hidden;
+    background-image: url(../../images/curtailment/bg.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+header{
+    background-image: url(../../images/curtailment/top.png);
+    background-position: 45.5% center;
+    background-repeat: no-repeat;
+    height: 81px;
+    position: relative;
+}
+header h1 {
+    color: #fff;
+    text-align: center;
+    font-size: 35px;
+    padding-top: 18px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+header .day {
+    position: absolute;
+    top: 30px;
+    right: 0;
+    color: #fff;
+    font-weight: 100;
+}
+header .day.left{
+    left: 0;
+    right: auto;
+    font-size: 25px;
+    font-weight: 500;
+}
+header .toggle-btn-wrap{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    position: absolute;
+    top: 30px;
+    right: 0;
+}
+header .toggle-btn{
+    position: relative;
+    font-size: 18px;
+    border: 3px solid #6d6d6d;
+    padding: 6.5px 42px 6.5px 18px;
+    border-radius: 100px;
+    background-color: #4d4d4d;
+    color: #fff;
+    box-shadow: inset 0 0 10px 0 rgba(0, 0, 0, 0.8);
+    transition: padding 0.45s;
+}
+header .toggle-btn.active{
+    padding: 6.5px 18px 6.5px 42px;
+}
+header .toggle-btn.tg1::before{
+    content: '시행';
+}
+header .toggle-btn.tg1.active::before{
+    content: '해제';
+}
+header .toggle-btn.tg2::before{
+    content: '호수';
+}
+header .toggle-btn.tg2.active::before{
+    content: '용량';
+}
+header .toggle-btn .circle-btn{
+    width: 22px;
+    height: 22px;
+    display: inline-block;
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    background-color: #fff;
+    border-radius: 50%;
+    box-shadow: inset 0 0 3px 2px rgba(0, 0, 0, 0.2);
+    transition: right 0.45s;
+}
+header .toggle-btn.active .circle-btn{
+    right: calc(100% - 32px);
+}
+header .toggle-btn.tg1 .circle-btn{
+    background-color: #61B459;
+}
+header .toggle-btn.tg1.active .circle-btn{
+    background-color: #E64F47;
+}
+header .toggle-btn.tg2 .circle-btn{
+    background-color: #fff175;
+}
+header .toggle-btn.tg2.active .circle-btn{
+    background-color: #96e1dd;
+}
+#main{
+    display: flex;
+    flex-direction: column;
+    /*gap: 100px;*/
+}
+.main-wrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 30px 0 40px;
+}
+.left-menu {display: flex;/*flex-direction: column;*/ gap: 10px;}
+.left-menu .left-pannel {
+    /*width: 325px;*/
+    gap: 5px;
+    height: 107px;
+    background: rgb(7,60,149); /* Old browsers */
+    background: -moz-linear-gradient(-45deg,  rgba(7,60,149,1) 0%, rgba(9,37,103,1) 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(-45deg,  rgba(7,60,149,1) 0%,rgba(9,37,103,1) 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(135deg,  rgba(7,60,149,1) 0%,rgba(9,37,103,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#073c95', endColorstr='#092567',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+    justify-content: space-between;
+    display: flex;
+    align-items: center;
+    padding: 20px 15px;
+}
+.left-menu .left-pannel-wrap{
+    position: relative;
+    margin: 15px 0;
+}
+.left-menu .left-pannel-wrap:before {
+    position: absolute;
+    content: '';
+    width: 12px;
+    height: 12px;
+    border: 1px solid #2F69C3;
+    border-right: 0;
+    border-bottom: 0;
+    top: 0;
+    left: 0;
+}
+.left-menu .left-pannel-wrap:after {
+    position: absolute;
+    content: '';
+    width: 12px;
+    height: 12px;
+    border: 1px solid #2F69C3;
+    border-left: 0;
+    border-bottom: 0;
+    top: 0;
+    right: 0;
+}
+.left-menu .left-pannel:before {
+    position: absolute;
+    content: '';
+    width: 12px;
+    height: 12px;
+    border: 1px solid #2F69C3;
+    border-right: 0;
+    border-top: 0;
+    bottom: 0;
+    left: 0;
+}
+.left-menu .left-pannel:after {
+    position: absolute;
+    content: '';
+    width: 12px;
+    height: 12px;
+    border: 1px solid #2F69C3;
+    border-left: 0;
+    border-top: 0;
+    bottom: 0;
+    right: 0;
+}
+.left-menu .circle {
+    width: 72px;
+    height: 72px;
+    background:#062255;
+    border-radius: 50px;
+    text-align: center;
+    line-height: 72px;
+    margin-right: 27px;
+}
+.left-menu .circle img {
+    vertical-align: middle;
+    margin: 0 0 3px 2.5px;
+}
+.left-menu .left-pannel-title{
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 300;
+    border-radius: 50%;
+    border-width: 3px;
+    border-style: solid;
+}
+.left-menu .left-pannel .number-wrap {
+    color: #fff;
+    margin: 0;
+}
+.left-menu .number-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+.left-menu .numbering-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #fff;
+}
+.left-menu .warn-text {
+    font-size: 22px;
+    margin-right: 11px;
+}
+.left-menu .numbering {
+    font-size: 18px;
+    margin-right: 5px;
+    font-weight: 700;
+    line-height: 1;
+}
+.left-menu .num-percentage{
+    display: inline-block;
+    white-space: nowrap;
+    color: #fff;
+}
+.left-menu .left-pannel .number-wrap em{
+    display: inline-block;
+    width: 1px;
+    background-color: rgba(255, 255, 255, 0);
+    align-self: stretch;
+}
+.main-content {
+    display: flex; 
+    align-items: center;
+}
+.main-content > ul {
+    /*width: 270px;
+    height: 135px;
+    position: absolute;
+    top: 302px;
+    left: 627px;*/
+    padding-left: 0;
+}
+.main-content > ul > li {
+    list-style: none;
+    color: #c0cbe1;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+}
+.main-content > ul > li span {
+    color: #fff;
+}
+.main-content > ul > li > img {
+    margin-right: 8px;
+}
+.main-content > ul > li > .legend-dot{
+    width: 15px;
+    height: 15px;
+    display: inline-block;
+    border-radius: 50%;
+    margin-right: 8px;
+}
+.bg-darkyellow{
+    background-color: #cfb112;
+}
+.line-darkyellow{
+    border-color: #cfb112;
+}
+.bg-yellow{
+    background-color: #FFC000;
+}
+.line-yellow{
+    border-color: #FFC000;
+}
+.bg-lightorange{
+    background-color: #e97e34;
+}
+.line-lightorange{
+    border-color: #e97e34;
+}
+.bg-orange{
+    background-color: #f8781c;
+}
+.line-orange{
+    border-color: #f8781c;
+}
+.bg-red{
+    background-color: #C00000;
+}
+.line-red{
+    border-color: #C00000;
+}
+.bg-lightred{
+    background-color: #fe5050;
+}
+.line-lightred{
+    border-color: #fe5050;
+}
+.bg-lightgreen{
+    background-color: #6ba544;
+}
+.line-lightgreen{
+    border-color: #6ba544;
+}
+.bg-green{
+    background-color: #00B050;
+}
+.line-green{
+    border-color: #00B050;
+}
+.bg-darkbluegray{
+    background-color: #4D5681;
+}
+.line-darkbluegray{
+    border-color: #4D5681;
+}
+.main-content > ul > li > p {
+    margin-bottom: 0px;
+    line-height: 28px;
+    font-weight: 100;
+}
+.map-wrap img {
+    width: 521px;
+    height: 815px;
+    position: absolute;
+    top: 0px;
+    left: 658px;
+}
+.map-wrap > a {
+    font-size: 0;
+}
+.map-wrap .tab-btn {
+    background-size: 100%;
+    display: block;
+    position: absolute;
+}
+.map-wrap {
+    /*width: 530px;
+    position: absolute;
+    top: 120px;
+    left: 700px;*/
+}
+.map-wrap .officesvg {
+    width: 49px;
+    height: 38px;
+    position: absolute;
+    top: 503px;
+    left: 75px;
+}
+.map-wrap svg defs g text {
+    fill: #fff;
+}
+.land {animation-duration:2s;animation-delay:2s;}
+.land:hover { cursor:pointer;}
+.land:hover path { cursor:pointer;}
+.land:hover text {fill: #fff; font-family:'suit';}
+svg text {
+    font-weight: 100;
+}
+
+.left-table {
+    margin: 10px 0;
+}
+.left-table .title-wrap{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.left-table td {
+    font-weight: 100;
+}
+
+.left-table h2, .fo-table h2 {    
+    color: #fff;
+    font-size: 22px;
+    font-weight: 500;
+    margin-bottom: 0;   
+}
+
+.left-table h2 {
+    width:100%;
+    padding:4px 0;
+    text-align: center;
+    background: rgb(16 61 146); 
+    border: 1px solid #356ac0;
+}
+.left-table h2 img {
+    margin-right: 11px;
+}
+
+.right-table {
+    width: 583px;
+    display: flex;
+    flex-direction: column;
+}
+.right-table .title-wrap{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.right-table td {
+    font-weight: 100;
+}
+.right-table h2, .fo-table h2 {
+    color: #fff;
+    font-size: 22px;
+    font-weight: 500;
+}
+.right-table h2 img {
+    margin-right: 11px;
+}
+.bottom-table-h2 {
+    margin-top: 13px;
+}
+.bottom-table-h2::after{
+    content: '(호수)';
+}
+.bottom-table-h2.active::after{
+    content: '(설비용량, MW)';
+}
+.switch-word::before{
+    content: '시행';
+}
+.switch-word.active::before{
+    content: '해제';
+}
+.right-table .title-wrap .badge{
+display: inline-block;
+color: #fcbf33 /*#7bd173*/;
+font-size: 16px;
+font-weight: 600;
+padding: 5px 10px;
+border: 1px solid #fcbf33/* #7bd173*/;
+border-radius: 3px;
+}
+.right-table .title-wrap .badge.active{
+    color:#7bd173 /*#f46860*/;
+    border-color: #7bd173 /*#f46860*/;
+}
+.right-table .title-wrap .badge::before{
+    content: '시행/계획';
+}
+.right-table .title-wrap .badge.active::before{
+    content: '시행/해제';
+}
+.right-table caption, .fo-table caption {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    clip-path: polygon(0 0, 0 0, 0 0);
+}
+.right-table caption img {
+    margin-right: 11px;
+}
+.right-table .top-table thead {
+    border-top: 1px solid #1A2D57;
+}
+.right-table .top-table tbody {
+    border-top: 1px solid #1A2D57;
+}
+.right-table tr {
+    border-width: 1px;
+    border-color: #1A2D57;
+}
+.right-table .top-table th {
+    vertical-align: middle;
+}
+.right-table .top-table th,.right-table .top-table td  {
+    text-align: center;
+}
+.right-table thead tr {
+    color: #D7DEEB;
+}
+.right-table tbody {
+    color: #fff;
+}
+.top-table tr th, .top-table tr td {
+    font-size: 15px;
+    padding: 3px;
+}
+.top-table thead th {background: #063b92; /* Old browsers */background: -moz-linear-gradient(180deg,  #063b92 0%, #072e79 100%); /* FF3.6-15 */background:-webkit-linear-gradient(180deg,  #063b92 0%,#072e79 100%); /* Chrome10-25,Safari5.1-6 */background:linear-gradient(180deg,  #063b92 0%,#072e79 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#063b92', endColorstr='#072e79',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */}
+.bottom-table tr {
+    text-align: center;
+    color: #fff;
+}
+.bottom-table thead tr {
+    color: #D7DEEB;
+}
+.bottom-table thead tr, .bottom-table .local {
+    font-size: 15px;
+    letter-spacing: -1%;
+}
+.bottom-table .local a:hover {
+    text-decoration: underline;
+}
+.bottom-table tbody th, .bottom-table tbody td {
+    padding: 3px;
+}
+.bottom-table tbody td {
+    font-size: 14px;
+    letter-spacing: -1%;
+    opacity: .8;
+}
+.bottom-table tbody td.total-area{
+    background: linear-gradient(180deg,  #063b92 0%,#072e79 100%);
+    opacity: 1;
+}
+.bottom-table tbody a {
+    text-decoration: none;
+    color: inherit;
+}
+.bottom-table thead th {
+    background: #063b92; /* Old browsers */
+    background: -moz-linear-gradient(180deg,  #063b92 0%, #072e79 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(180deg,  #063b92 0%,#072e79 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(180deg,  #063b92 0%,#072e79 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#063b92', endColorstr='#072e79',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+}
+.bottom-table tbody {
+    border-top: 0px;
+}
+.bottom-table-sum th, .bottom-table-sum td {
+    background: #063b92; /* Old browsers */
+    background: -moz-linear-gradient(180deg,  #063b92 0%, #072e79 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(180deg,  #063b92 0%,#072e79 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(180deg,  #063b92 0%,#072e79 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#063b92', endColorstr='#072e79',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+}
+.fo-table {
+    background: url(../../images/curtailment/bg_tb.png) no-repeat 0 0;
+    background-size: cover;
+    height: auto;
+    padding: 0 25px 35px;
+}
+.fo-table h2 {
+    text-align: center;
+    padding-top: 20px;
+    margin-bottom: 20px;
+}
+
+.foot-table thead {
+    background-color: #0C174C;
+    text-align: center;
+    color: #fff;
+    font-size: 16px;
+}
+.foot-table tbody {
+    text-align: center;
+    color: #FFF;
+    font-size: 16px;
+}
+.foot-table tbody td {
+    padding: 0.5rem 0.5rem;
+}
+
+/* 툴팁 */
+/* 툴팁 기본 스타일 설정 시작 */
+
+.right-table .tooltip {
+    position: relative !important;
+    display: table-cell;
+    border: none;
+    opacity: 1 !important;
+    text-align: center !important;
+    font-family: 'suit',sans-serif !important;
+    font-size: 14px !important;
+  }
+
+  .tooltip .tooltiptext {
+    visibility: hidden;
+    color: #fff;
+    text-align: left;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    font-size: 13px;
+    white-space: nowrap;
+  }
+
+  .tooltip:hover .tooltiptext {
+    visibility: visible;
+  }
+
+  /* 툴팁 기본 스타일 설정 끝 */
+  /* 툴팁 화살표 기본 스타일 설정 시작 */
+
+.tooltip .tooltiptext::after {
+    content: " ";
+    position: absolute;
+    border-style: solid;
+    border-width: 5px;
+  }
+
+  /* 툴팁 화살표 기본 스타일 설정 끝 */
+  /* 위쪽 툴팁 시작 */
+
+.tooltip .tooltip-top {
+    bottom: 134%;
+    padding: 5px 10px;
+    left: 71%;
+    margin-left: -70px;
+  }
+
+  .tooltip .tooltip-top::after {
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+  }
+  .tooltip .tooltip-top.yellow-bg::after{
+    border-color: var(--yellow-color) transparent transparent transparent;
+  }
+  .tooltip .tooltip-top.red-bg::after{
+    border-color: var(--red-color) transparent transparent transparent;
+  }
+  .tooltip .tooltip-top.orange-bg::after{
+    border-color: var(--orange-color) transparent transparent transparent;
+  }
+.chungnam-width .tooltip .tooltip-top {
+    left: 40%;
+}
+/* 툴팁끝 */
+
+/* 테이블스크롤 */
+.fo-table table{
+    /*border-collapse: collapse;
+    min-width: 1690px;
+    width: 100%;*/
+    /* margin:0 auto; */
+    /*overflow: hidden;
+    display: table;*/
+}
+.fo-table table thead{
+    /*width: 100%;
+    float: left;
+    border-bottom: none;
+    margin-right: 0;
+    border: 0;*/
+}
+.fo-table table thead tr{/*width: 100%;display:table;border: 0;*/}
+
+.fo-table table tbody{
+    /*width: 100%;
+    float: left;
+    height:100px;
+    overflow-x:
+    hidden;
+    width: 100%;
+    overflow-y: overlay;*/
+    border: 0;
+}
+.fo-table table tbody tr{/*width: 100%; display:table;border: 0;*/}
+
+.fo-table thead th {
+    /*width: 20%;*/
+    font-weight: 100;
+    border-bottom: 0;
+}
+.fo-table tbody td {
+    /*width: 20%;*/
+    border-color: rgba(255, 255, 255, .1);
+    font-weight: 100;
+}
+.fo-table tbody td[scope="row"] {
+    background-color: #0C174C;
+}
+/* 스크롤바 커스텀 */
+.fo-table table tbody::-webkit-scrollbar {
+    width: 15px;
+    position: absolute;
+}
+.fo-table table tbody::-webkit-scrollbar-track {
+    background-color: #000;
+    position: absolute;
+}
+.fo-table table tbody::-webkit-scrollbar-thumb {
+    background-color: #fff;
+    position: absolute;
+}
+/* 포커스 */
+svg a {
+    outline: 0;
+}
+svg a:hover path{
+    stroke-width:2;
+    stroke: #fff;
+    stroke-opacity:1;
+  }
+
+svg a:active path{
+    stroke-width:2;
+    stroke: #fff;
+    stroke-opacity:1;
+  }
+
+svg a:focus path{
+    stroke-width:2;
+    stroke: #fff;
+    stroke-opacity:1 !important;
+  }

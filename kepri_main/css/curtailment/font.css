@@ -1,0 +1,27 @@
+@charset "utf-8";
+
+/* Suit */
+@font-face{
+	font-family:'suit';
+	font-weight:100;
+	font-style: normal;
+	src:url("../../font/SUIT-Regular.otf");
+	src:url("../../font/AnyConv.com__SUIT-Regular.woff2") format('woff2'),
+		url("../../font/AnyConv.com__SUIT-Regular.woff") format('woff');
+}
+@font-face{
+	font-family:'suit';
+	font-weight:300;
+	font-style: normal;
+	src:url("../../font/SUIT-Medium.otf");
+	src:url("../../font/AnyConv.com__SUIT-Medium.woff2") format('woff2'),
+		url("../../font/AnyConv.com__SUIT-Medium.woff") format('woff');
+}
+@font-face{
+	font-family:'suit';
+	font-weight:700;
+	font-style: normal;
+	src:url("../../font/SUIT-Bold.otf");
+	src:url("../../font/AnyConv.com__SUIT-Bold.woff2") format('woff2'),
+		url("../../font/AnyConv.com__SUIT-Bold.woff") format('woff');
+}

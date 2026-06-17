@@ -1,0 +1,8 @@
+@charset "utf-8";
+
+html, body, body div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, abbr, address, cite, code, del, dfn, em, img, 
+ins, kbd, q, samp, small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td
+{margin:0; padding:0; border:0; font-weight:normal; vertical-align:baseline; background:transparent;}
+html,body{height:100%; color:#666;}
+html{box-sizing:border-box; -moz-box-sizing:border-box; -webkit-box-sizing:border-box;  font-size:16px; word-break:break-all; line-height:1.4;}
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, input, textarea, p, blockquote, th, td,button {padding:0; margin:0; font-weight:300;  font-family: 'suit', sans-serif;  word-break: break-word;  -webkit-text-size-adjust:none; line-height: 1.4; font-size: 1rem;}
